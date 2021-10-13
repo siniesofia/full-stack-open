@@ -1,10 +1,11 @@
 import React from 'react'
 
 const Course = ({ course }) => {
+  console.log('course.parts', course.parts)
   return (
     <div>
-      <h1>{course.name}</h1>
-      {course.parts.map(part => <p>{part.name} {part.exercises}</p>)}
+      <Header course={course.name}></Header>
+      <Content parts={course.parts}></Content>
     </div>
   )
 }
@@ -15,19 +16,19 @@ const Header = ( {course} ) => {
   )
 }
 
-const Content = ( {parts, exercises } ) => {
+const Content = ( {parts} ) => {
+  console.log('parts[0]', parts[0])
   return (
-    <>
-      <Part part={parts[0]} exercises={exercises[0]} />
-      <Part part={parts[1]} exercises={exercises[1]} />
-      <Part part={parts[2]} exercises={exercises[2]} />
-    </>
+    <div>
+      {parts.map(part => <Part part={part}></Part>)}
+    </div>
+
   )
 }
 
-const Part = ( {part, exercises} ) => {
+const Part = ( {part} ) => {
   return (
-    <p>{part} {exercises}</p>
+    <p>{part.name} {part.exercises}</p>
   )
 }
 
@@ -62,7 +63,7 @@ const App = () => {
 
   return (
     <div>
-      <Course course= {course}></Course>
+      <Course key={course.id} course={course}></Course>
     </div>
   )
 
