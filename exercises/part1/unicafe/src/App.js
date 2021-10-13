@@ -8,12 +8,20 @@ const Button = ({ handleClick, teksti }) => {
 
 const StatisticLine = ({ text, value }) => {
   return (
-    <table>
-      <tr>
-        <th>{text}</th>
-        <td>{Math.round(value[0]*10)/10}{" "}{value[1]}</td>
-      </tr>
-    </table>
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            <th 
+            width= '50' 
+            style={{textAlign:"left"}}
+            >{text}</th>
+            <td>{Math.round(value[0]*10)/10}{" "}{value[1]}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
 
   )
 }
