@@ -14,7 +14,7 @@ const StatisticLine = ({ text, value }) => {
           <tr>
             <th 
             width= '50' 
-            style={{textAlign:"left"}}
+            style={{textAlign:"left", fontWeight: 'normal'}}
             >{text}</th>
             <td>{Math.round(value[0]*10)/10}{" "}{value[1]}</td>
           </tr>
