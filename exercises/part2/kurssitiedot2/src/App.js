@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Course = ({ course }) => {
-  console.log('course.parts', course.parts)
   return (
     <div>
       <Header course={course.name}></Header>
@@ -17,10 +16,9 @@ const Header = ( {course} ) => {
 }
 
 const Content = ( {parts} ) => {
-  console.log('parts[0]', parts[0])
   return (
     <div>
-      {parts.map(part => <Part part={part}></Part>)}
+      {parts.map(part => <Part key={part.id} part={part}></Part>)}
     </div>
 
   )
