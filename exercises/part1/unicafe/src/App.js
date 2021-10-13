@@ -7,21 +7,13 @@ const Button = ({ handleClick, teksti }) => {
 }
 
 const StatisticLine = ({ text, value }) => {
-  // if (value[1]==="%") {
-  //   return (
-  //     <tr>
-  //       <td>{text}</td>
-  //       <td>{Math.round(value[0]*10)/10+"%"}</td>
-  //     </tr>
-  //   )
-  // }
   return (
-    <tbody>
-
-        <td>{text}</td>
-        <td>{Math.round(value[0]*10)/10}</td>
-
-    </tbody>
+    <table>
+      <tr>
+        <th>{text}</th>
+        <td>{Math.round(value[0]*10)/10}{" "}{value[1]}</td>
+      </tr>
+    </table>
 
   )
 }
@@ -37,11 +29,11 @@ const Statistics = ({ good, neutral, bad }) => {
   }
     return (
       <>
-        <StatisticLine text="good" value={[good,0]}></StatisticLine>
-        <StatisticLine text="neutral" value={[neutral, 0]}></StatisticLine>
-        <StatisticLine text="bad" value={[bad, 0]}></StatisticLine>
-        <StatisticLine text="all" value={[good + neutral + bad, 0]}></StatisticLine>
-        <StatisticLine text="average" value={[(good*1+neutral*0+bad*-1)/(good+neutral+bad), 0]}></StatisticLine>
+        <StatisticLine text="good" value={[good]}></StatisticLine>
+        <StatisticLine text="neutral" value={[neutral]}></StatisticLine>
+        <StatisticLine text="bad" value={[bad]}></StatisticLine>
+        <StatisticLine text="all" value={[good + neutral + bad]}></StatisticLine>
+        <StatisticLine text="average" value={[(good*1+neutral*0+bad*-1)/(good+neutral+bad)]}></StatisticLine>
         <StatisticLine text="positive" value={[(good*1/(good+neutral+bad))*100,"%"]}></StatisticLine>
       </>
     )
