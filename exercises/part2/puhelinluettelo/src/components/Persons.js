@@ -9,7 +9,7 @@ const Person = ({ person }) => {
 const Persons = ({ persons }) => {
     return (
       <div>
-      {persons.map(person => <Person person={person}></Person>)}
+      {persons.map(person => <Person key={person.name} person={person}></Person>)}
       </div>
     )
 }

@@ -13,20 +13,26 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
 
+  const addNameAndNumber = ( {newName, newNumber }) => {
+    const nameObject = {
+      name: newName,
+      number: newNumber,
+    }
+    setPersons(persons.concat(nameObject))
+    setNewName('')
+    setNewNumber('')
+  }
+
+  const dontAddNameAndNumber = () => {
+    setNewName('')
+    setNewNumber('')
+  }
+
   const addName = (event) => {
     event.preventDefault()
-    if (CheckForName({persons}, {newName})) {
-      const nameObject = {
-        name: newName,
-        number: newNumber,
-      }
-      setPersons(persons.concat(nameObject))
-      setNewName('')
-      setNewNumber('')
-    } else {
-      setNewName('')
-      setNewNumber('')
-
+    {(CheckForName({persons}, {newName})) 
+    ? addNameAndNumber({ newName, newNumber })
+    : dontAddNameAndNumber()
     }
   }
   
@@ -37,7 +43,6 @@ const App = () => {
   const handleNumberChange = (event) => {
     setNewNumber(event.target.value)
   }
-
 
   return (
     <div>
