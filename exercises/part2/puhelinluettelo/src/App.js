@@ -1,8 +1,39 @@
 import React, { useState } from 'react'
 
+
+const Persons = ({ persons }) => {
+  return (
+    <div>
+    {persons.map(person => <Person person={person}></Person>)}
+    </div>
+  )
+}
+
 const Person = ({ person }) => {
   return (
     <p>{person.name} {person.number}</p>
+  )
+}
+
+const Form = ({ addName, newName, newNumber, handleNameChange, handleNumberChange }) => {
+  return (
+    <form onSubmit={addName}>
+      <div>
+        name: <input
+        value={newName}
+        onChange={handleNameChange}
+        />
+      </div>
+      <div>
+        number: <input
+        value={newNumber}
+        onChange={handleNumberChange}
+        />
+      </div>
+      <div>
+        <button type="submit">add</button>  
+      </div>
+    </form>
   )
 }
 
@@ -17,7 +48,6 @@ const checkIfNameExists = (persons, newName) => {
   }
   return true
 }
-
 
 const App = () => {
   const [ persons, setPersons ] = useState([
@@ -43,11 +73,8 @@ const App = () => {
       setNewNumber('')
 
     }
-
   }
-
-
-
+  
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
@@ -56,27 +83,15 @@ const App = () => {
     setNewNumber(event.target.value)
   }
 
+
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={addName}>
-        <div>
-          name: <input 
-          value={newName}
-          onChange={handleNameChange}/>
-        </div>
-        <div>
-          number: <input 
-          value={newNumber}
-          onChange={handleNumberChange}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <Form addName={addName} newName={newName} newNumber={newNumber} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange}></Form>
       <h2>Numbers</h2>
-      {persons.map(person => <Person key={person.name}person={person}></Person>)}
+      <Persons persons={persons}></Persons>
     </div>
+    
 )
 }
 export default App
