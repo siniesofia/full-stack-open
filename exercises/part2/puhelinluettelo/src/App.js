@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Persons from './components/Persons'
-import Form from './components/Form'
+import PersonForm from './components/PersonForm'
 import CheckForName from './components/CheckForName'
 
 
@@ -12,6 +12,7 @@ const App = () => {
 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
+  const [ newFilter, setNewFilter ] = useState('')
 
   const addNameAndNumber = ( {newName, newNumber }) => {
     const nameObject = {
@@ -41,22 +42,46 @@ const App = () => {
   }
 
   const handleNumberChange = (event) => {
+    console.log(event.target.value)
     setNewNumber(event.target.value)
   }
+
+
+  const handleFilterChange = (event) => {
+    console.log('tapahtuu jotain')
+    setNewFilter(event.target.value)
+  }
+
+  const FilterForm = ({ newFilter, handleFilterChange }) => {
+    return (
+      <form>
+        <div >
+          filter shown with: 
+          <input 
+          value={newFilter.newFilter}
+          onChange={handleFilterChange.handleFilterChange}
+          />
+        </div>
+      </form>
+    )
+  }
+
 
   return (
     <div>
       <h2>Phonebook</h2>
+      <FilterForm newFilter={newFilter} handleFilterChange={handleFilterChange}></FilterForm>
       <h2>add a new</h2>
-      <Form 
+      <PersonForm 
       addName={addName} 
       newName={newName} 
       newNumber={newNumber} 
       handleNameChange={handleNameChange} 
       handleNumberChange={handleNumberChange}>
-      </Form>
+      </PersonForm>
       <h2>Numbers</h2>
       <Persons persons={persons}></Persons>
+      <p>{newFilter}</p>
     </div>
     
 )
