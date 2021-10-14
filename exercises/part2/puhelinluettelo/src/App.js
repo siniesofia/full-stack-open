@@ -52,25 +52,34 @@ const App = () => {
     setNewFilter(event.target.value)
   }
 
-  const FilterForm = ({ newFilter, handleFilterChange }) => {
-    return (
-      <form>
-        <div >
-          filter shown with: 
-          <input 
-          value={newFilter.newFilter}
-          onChange={handleFilterChange.handleFilterChange}
-          />
-        </div>
-      </form>
-    )
-  }
+  // const FilterForm = ({ newFilter, handleFilterChange }) => {
+  //   return (
+  //     <form>
+  //       <div >
+  //         filter shown with: 
+  //         <input 
+  //         value={newFilter.newFilter}
+  //         onChange={handleFilterChange.handleFilterChange}
+  //         />
+  //       </div>
+  //     </form>
+  //   )
+  // }
 
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <FilterForm newFilter={newFilter} handleFilterChange={handleFilterChange}></FilterForm>
+      {/* <FilterForm newFilter={newFilter} handleFilterChange={handleFilterChange}></FilterForm> */}
+      <form>
+        <div >
+          filter shown with: 
+          <input 
+          value={newFilter}
+          onChange={handleFilterChange}
+          />
+        </div>
+      </form>
       <h2>add a new</h2>
       <PersonForm 
       addName={addName} 
