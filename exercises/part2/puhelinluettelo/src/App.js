@@ -7,17 +7,13 @@ const Person = ({ person }) => {
 }
 
 const checkIfNameExists = (persons, newName) => {
-  console.log("newName",newName)
-  console.log('tulee ylös')
-  console.log('persons', persons)
-  console.log('persons.length', persons.persons.length)
 
-  for (let i =0; i < persons.persons.length; i++) {
-    console.log('tulee looppin')
-    console.log('persons.persons[i].name', persons.persons[i].name)
-    console.log('newNamealla', newName.newName)
-    if (persons.persons[i].name === newName.newName) {
-      console.log('tulee tänne')
+  const length = persons.persons.length
+  const name = newName.newName
+
+  for (let i =0; i < length; i++) {
+    if (persons.persons[i].name === name) {
+      window.alert(`${name} is already added to phonebook`)
       return false
     }
   }
@@ -37,7 +33,6 @@ const App = () => {
   const addName = (event) => {
     event.preventDefault()
     if (checkIfNameExists({persons}, {newName})) {
-      console.log('tulee alle')
       const nameObject = {
         name: newName,
         number: "000",
@@ -70,7 +65,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.map(person => <Person person={person}></Person>)}
+      {persons.map(person => <Person key={person.name}person={person}></Person>)}
     </div>
 )
 }
