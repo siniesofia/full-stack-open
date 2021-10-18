@@ -6,10 +6,13 @@ const Person = ({ person }) => {
     )
 }
 
-const Persons = ({ persons }) => {
+
+const Persons = (props) => {
+    const persons = props.persons
+    const filter = props.newFilter
     return (
       <div>
-      {persons.map(person => <Person key={person.name} person={person}></Person>)}
+      {persons.filter(person => person.name.includes(filter)).map(person => <Person key={person.name} person={person}></Person>)}
       </div>
     )
 }

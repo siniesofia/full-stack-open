@@ -6,9 +6,12 @@ import CheckForName from './components/CheckForName'
 
 const App = () => {
   const [ persons, setPersons ] = useState([
-    { name: 'Amira Hellas' , number: "098765"},
-    { name: 'Elli Ailas', number: "234567"}
+    { name: 'Amira Hellas', number: '040-123456' },
+    { name: 'Ada Lovelace', number: '39-44-5323523' },
+    { name: 'Dan Abramov', number: '12-43-234345' },
+    { name: 'Mary Poppendieck', number: '39-23-6423122' }
   ])
+
 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
@@ -48,29 +51,12 @@ const App = () => {
 
 
   const handleFilterChange = (event) => {
-    console.log('tapahtuu jotain')
     setNewFilter(event.target.value)
   }
-
-  // const FilterForm = ({ newFilter, handleFilterChange }) => {
-  //   return (
-  //     <form>
-  //       <div >
-  //         filter shown with: 
-  //         <input 
-  //         value={newFilter.newFilter}
-  //         onChange={handleFilterChange.handleFilterChange}
-  //         />
-  //       </div>
-  //     </form>
-  //   )
-  // }
-
 
   return (
     <div>
       <h2>Phonebook</h2>
-      {/* <FilterForm newFilter={newFilter} handleFilterChange={handleFilterChange}></FilterForm> */}
       <form>
         <div >
           filter shown with: 
@@ -89,8 +75,7 @@ const App = () => {
       handleNumberChange={handleNumberChange}>
       </PersonForm>
       <h2>Numbers</h2>
-      <Persons persons={persons}></Persons>
-      <p>{newFilter}</p>
+      <Persons persons={persons} newFilter={newFilter}></Persons>
     </div>
     
 )
