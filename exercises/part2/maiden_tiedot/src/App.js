@@ -3,16 +3,28 @@ import axios from 'axios'
 
 const Countries = ({ countries, filter }) => {
   console.log('filter.length', filter.length)
-  if (countries.filter(country => country.name.common.includes(filter)).length > 10) {
+  const matches = countries.filter(country => country.name.common.toLowerCase().includes(filter.toLowerCase())).length
+  if (matches > 10) {
     return (
-      <div>Too many matcches, specify another filter</div>
+      <div>Too many matches, specify another filter</div>
+    )
+  } else if (matches > 1) {
+    return (
+      <div>
+        {countries.filter(country => country.name.common.toLowerCase().includes(filter.toLowerCase()))
+        .map(country => <CountryList key={country.name.common} country={country}></CountryList>)}
+      </div>
+    )
+  } else if (matches === 1){
+    return (
+      <div>
+        {countries.filter(country => country.name.common.toLowerCase().includes(filter.toLowerCase()))
+        .map(country => <CountryInformation key={country.name.common} country={country}></CountryInformation>)}        
+      </div>
     )
   } else {
     return (
-      <div>
-        {countries.filter(country => country.name.common.toLowerCase().includes(filter))
-        .map(country => <CountryList key={country.name.common} country={country}></CountryList>)}
-      </div>
+      <div>nothing to show</div>
     )
   }
 
@@ -23,6 +35,27 @@ const CountryList = ({ country }) => {
     <div>
       {country.name.common}
     </div>
+  )
+}
+
+const CountryInformation = ({ country }) => {
+  console.log('country', country)
+  const languages = Object.values(country.languages)
+  return (
+    <div>
+      <h1>{country.name.common}</h1>
+      <div>capital {country.capital}</div>
+      <div>population {country.population}</div>
+      <h2>languages</h2>
+      {languages.map(language => <Languages language={language}></Languages>)}
+      <div >{country.flag}</div>
+    </div>
+  )
+}
+
+const Languages = ({ language }) => {
+  return (
+    <div>{language}</div>
   )
 }
 
