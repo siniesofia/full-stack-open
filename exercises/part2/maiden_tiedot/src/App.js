@@ -34,6 +34,8 @@ const CountryList = ({ country }) => {
   return (
     <div>
       {country.name.common}
+      {" "}
+      <button>show</button>
     </div>
   )
 }
