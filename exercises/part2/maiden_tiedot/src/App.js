@@ -40,7 +40,10 @@ const CountryList = ({ country }) => {
 
 const CountryInformation = ({ country }) => {
   console.log('country', country)
+  console.log('country.altSpellings', country.altSpellings[0])
+  const code = country.altSpellings[0]
   const languages = Object.values(country.languages)
+  const osoite = 'https://www.countryflags.io/' + code + '/flat/64.png'
   return (
     <div>
       <h1>{country.name.common}</h1>
@@ -48,7 +51,7 @@ const CountryInformation = ({ country }) => {
       <div>population {country.population}</div>
       <h2>languages</h2>
       {languages.map(language => <Languages language={language}></Languages>)}
-      <div >{country.flag}</div>
+      <img src={osoite} width="200px" height="200px"></img>
     </div>
   )
 }
