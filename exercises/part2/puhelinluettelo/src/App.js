@@ -27,10 +27,18 @@ const App = () => {
       name: newName,
       number: newNumber,
     }
-    setPersons(persons.concat(nameObject))
-    setNewName('')
-    setNewNumber('')
+    // setPersons(persons.concat(nameObject))
+    // setNewName('')
+    // setNewNumber('')
+    axios
+      .post('http://localhost:3001/persons', nameObject)
+      .then(response => {
+        setPersons(persons.concat(response.data))
+          setNewName('')
+          setNewNumber('')
+      })
   }
+  console.log('persons', persons)
 
   const dontAddNameAndNumber = () => {
     setNewName('')
@@ -57,6 +65,26 @@ const App = () => {
     setNewFilter(event.target.value)
   }
 
+  const deletePerson = (id) => {
+    const url = `http://localhost:3001/persons/${id}`
+    const personToBeDeleted = persons.filter(person => person.id === id)
+    const personDeleted = persons.filter(person => person.id !== id)
+    console.log('persontobedeleted[0]', personToBeDeleted[0].name)
+    console.log('personToBeDeleted', personToBeDeleted)
+    console.log('personDeleted', personDeleted)
+    if (window.confirm(`Delete ${personToBeDeleted[0].name}?`)) {
+      axios
+      .delete(url)
+      .then(response => {
+        setPersons(personDeleted)
+      })
+    }
+
+    console.log(`person ${id} needs to be removed`)
+    console.log('persons', persons)
+    console.log('personDeleted', personDeleted)
+  }
+  
   return (
     <div>
       <h2>Phonebook</h2>
@@ -78,7 +106,7 @@ const App = () => {
       handleNumberChange={handleNumberChange}>
       </PersonForm>
       <h2>Numbers</h2>
-      <Persons persons={persons} newFilter={newFilter}></Persons>
+      <Persons persons={persons} newFilter={newFilter} deletePerson = {deletePerson}></Persons>
     </div>
 )
 }

@@ -7,25 +7,23 @@ const App = () => {
   const [ allCountries, setCountries] = useState([])
   const [ filter, setFilter ] = useState('')
 
+  // const api_key = process.env.REACT_APP_API_KEY
+
   useEffect(() => {
-    console.log('effect')
     axios
       .get('https://restcountries.com/v3/all')
       .then(response => {
-        console.log('promise fullfilled')
         setCountries(response.data)
       })
 
   }, [])
 
-  console.log('render')
   
   const handleFilterChange = (event) => {
     setFilter(event.target.value)
   }
 
   const Countries = ({ countries, filter }) => {
-    console.log('filter.length', filter.length)
     const matches = countries.filter(country => country.name.common.toLowerCase().includes(filter.toLowerCase())).length
     if (matches > 10) {
       return (
@@ -63,14 +61,7 @@ const App = () => {
     )
   }
   
-  // const HandleClick = () => {
-  //   console.log('cloggg')
-  //   // setFilter("Finland")
-  // }
-  
   const CountryInformation = ({ country }) => {
-    console.log('country', country)
-    console.log('country.altSpellings', country.altSpellings[0])
     const code = country.altSpellings[0]
     const languages = Object.values(country.languages)
     const osoite = 'https://www.countryflags.io/' + code + '/flat/64.png'
@@ -81,7 +72,7 @@ const App = () => {
         <div>population {country.population}</div>
         <h2>languages</h2>
         {languages.map(language => <Languages language={language}></Languages>)}
-        <img src={osoite} width="200px" height="200px"></img>
+        <img src={osoite} width="200px" height="200px" alt="lipun kuva"></img>
       </div>
     )
   }
