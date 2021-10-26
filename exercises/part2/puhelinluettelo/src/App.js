@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import personService from './services/persons'
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
@@ -14,8 +13,8 @@ const App = () => {
   useEffect(() => {
     personService
       .getAll()
-      .then(response => {
-        setPersons(response.data)
+      .then(initialPersons => {
+        setPersons(initialPersons)
       })
     // console.log('effect')
     // axios
@@ -26,7 +25,7 @@ const App = () => {
     //   })
   }, [])
   
-  console.log('render', persons.length, 'notes')
+  console.log('render', persons.length, 'persons')
 
   const addNameAndNumber = ( {newName, newNumber }) => {
     const nameObject = {
@@ -79,7 +78,6 @@ const App = () => {
   }
 
   const deletePerson = (id) => {
-    const url = `http://localhost:3001/persons/${id}`
     const personToBeDeleted = persons.filter(person => person.id === id)
     const personDeleted = persons.filter(person => person.id !== id)
     if (window.confirm(`Delete ${personToBeDeleted[0].name}?`)) {

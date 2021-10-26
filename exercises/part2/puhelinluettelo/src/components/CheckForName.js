@@ -1,4 +1,4 @@
-import react from 'react'
+
 
 const CheckForName = (persons, newName) => {
   const length = persons.persons.length
