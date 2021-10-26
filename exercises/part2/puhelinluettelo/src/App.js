@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import personService from './services/persons'
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import CheckForName from './components/CheckForName'
@@ -11,13 +12,18 @@ const App = () => {
   const [ newFilter, setNewFilter ] = useState('')
 
   useEffect(() => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
+    personService
+      .getAll()
       .then(response => {
-        console.log('promise fulfilled')
         setPersons(response.data)
       })
+    // console.log('effect')
+    // axios
+    //   .get('http://localhost:3001/persons')
+    //   .then(response => {
+    //     console.log('promise fulfilled')
+    //     setPersons(response.data)
+    //   })
   }, [])
   
   console.log('render', persons.length, 'notes')
@@ -30,13 +36,20 @@ const App = () => {
     // setPersons(persons.concat(nameObject))
     // setNewName('')
     // setNewNumber('')
-    axios
-      .post('http://localhost:3001/persons', nameObject)
+
+    personService
+      .create(nameObject)
       .then(response => {
         setPersons(persons.concat(response.data))
-          setNewName('')
-          setNewNumber('')
+        setNewName('')
+        setNewNumber('')
       })
+      // .post('http://localhost:3001/persons', nameObject)
+      // .then(response => {
+      //   setPersons(persons.concat(response.data))
+      //     setNewName('')
+      //     setNewNumber('')
+      // })
   }
   console.log('persons', persons)
 
@@ -70,11 +83,17 @@ const App = () => {
     const personToBeDeleted = persons.filter(person => person.id === id)
     const personDeleted = persons.filter(person => person.id !== id)
     if (window.confirm(`Delete ${personToBeDeleted[0].name}?`)) {
-      axios
-      .delete(url)
-      .then(response => {
-        setPersons(personDeleted)
-      })
+      console.log('tulee')
+      personService
+        .deletePerson(id)
+        .then(response => {
+          setPersons(personDeleted)
+        })
+      // // axios
+      // // .delete(url)
+      // // .then(response => {
+      // //   setPersons(personDeleted)
+      // // })
     }
   }
   
