@@ -21,6 +21,13 @@ const App = () => {
   }, [])
   
   const addNameAndNumber = ( {newName, newNumber }) => {
+    // const length = persons.length
+    // for (let i =0; i < length; i++) {
+    //   if (newName === persons[i].name) {
+    //     console.log('löytyy jo')
+    //   }
+    // }
+
     const nameObject = {
       name: newName,
       number: newNumber,
@@ -32,19 +39,47 @@ const App = () => {
         setPersons(persons.concat(response.data))
         setNewName('')
         setNewNumber('')
+        setSuccessMessage(`Added ${nameObject.name}`)
+        setTimeout(() => {
+          setSuccessMessage(null)
+        }, 5000)
       })
   }
+
+  const replaceNumber = namenumberandid => {
+    const name = namenumberandid[0]
+    const number = namenumberandid[1]
+    const id = namenumberandid[2]
+    console.log('name', name)
+    console.log('number', number)
+    console.log('id', id)
+    // const url = `http://localhost:3001/persons/${id}`
+    // const person = persons.find(n => n.id === id)
+    // console.log('person', person)
+    // const changedNote = { ...person, number: number }
+    // setNewName('')
+    // setNewNumber('')
+  }
+
 
   const dontAddNameAndNumber = () => {
     setNewName('')
     setNewNumber('')
   }
 
+
   const addName = (event) => {
     event.preventDefault()
-    {(CheckForName({persons}, {newName})) 
-    ? addNameAndNumber({ newName, newNumber })
-    : dontAddNameAndNumber()
+    const whatToDo = CheckForName({persons}, {newName})
+    if (whatToDo === "add name and number") {
+      console.log("add name and number")
+      addNameAndNumber({ newName, newNumber })
+    } else if (whatToDo === "dont add anything"){
+      console.log("dont add anything")
+      dontAddNameAndNumber()
+    } else {
+      console.log('whatToDo', whatToDo)
+      replaceNumber([newName, newNumber, whatToDo])
     }
   }
   
@@ -63,11 +98,16 @@ const App = () => {
   const deletePerson = (id) => {
     const personToBeDeleted = persons.filter(person => person.id === id)
     const personDeleted = persons.filter(person => person.id !== id)
+    console.log('personToBeDeleted', personToBeDeleted)
     if (window.confirm(`Delete ${personToBeDeleted[0].name}?`)) {
       personService
         .deletePerson(id)
         .then(response => {
           setPersons(personDeleted)
+          setSuccessMessage(`Deleted ${personToBeDeleted[0].name}`)
+          setTimeout(() => {
+            setSuccessMessage(null)
+          }, 5000)
         })
     }
   }

@@ -3,11 +3,14 @@ const CheckForName = (persons, newName) => {
   const name = newName.newName
   for (let i =0; i < length; i++) {
     if (persons.persons[i].name === name) {
-      window.alert(`${name} is already added to phonebook`)
-      return false
+      if (window.confirm(`${name} is already added to phonebook, replace the old number with a new one?`)) {
+        return persons.persons[i].id
+      } else {
+        return "dont add anything"
+      }
     }
   }
-  return true
+  return "add name and number"
 }
 
 export default CheckForName
