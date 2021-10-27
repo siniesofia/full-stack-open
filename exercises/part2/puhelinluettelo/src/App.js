@@ -59,8 +59,11 @@ const App = () => {
     console.log('person', person)
     const changedPerson = { ...person, number: number }
     console.log('changedPerson', changedPerson)
-    // setNewName('')
-    // setNewNumber('')
+    axios.put(url, changedPerson).then(response => {
+      setPersons(persons.map(person => person.id !== id ? person : response.data))
+    })
+    setNewName('')
+    setNewNumber('')
   }
 
 
