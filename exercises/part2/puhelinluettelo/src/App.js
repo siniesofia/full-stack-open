@@ -3,12 +3,14 @@ import personService from './services/persons'
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import CheckForName from './components/CheckForName'
+import Notification from './components/Notification'
 
 const App = () => {
   const [ persons, setPersons] = useState([])
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
+  const [successMessage, setSuccessMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -16,25 +18,13 @@ const App = () => {
       .then(initialPersons => {
         setPersons(initialPersons)
       })
-    // console.log('effect')
-    // axios
-    //   .get('http://localhost:3001/persons')
-    //   .then(response => {
-    //     console.log('promise fulfilled')
-    //     setPersons(response.data)
-    //   })
   }, [])
   
-  console.log('render', persons.length, 'persons')
-
   const addNameAndNumber = ( {newName, newNumber }) => {
     const nameObject = {
       name: newName,
       number: newNumber,
     }
-    // setPersons(persons.concat(nameObject))
-    // setNewName('')
-    // setNewNumber('')
 
     personService
       .create(nameObject)
@@ -43,14 +33,7 @@ const App = () => {
         setNewName('')
         setNewNumber('')
       })
-      // .post('http://localhost:3001/persons', nameObject)
-      // .then(response => {
-      //   setPersons(persons.concat(response.data))
-      //     setNewName('')
-      //     setNewNumber('')
-      // })
   }
-  console.log('persons', persons)
 
   const dontAddNameAndNumber = () => {
     setNewName('')
@@ -81,23 +64,18 @@ const App = () => {
     const personToBeDeleted = persons.filter(person => person.id === id)
     const personDeleted = persons.filter(person => person.id !== id)
     if (window.confirm(`Delete ${personToBeDeleted[0].name}?`)) {
-      console.log('tulee')
       personService
         .deletePerson(id)
         .then(response => {
           setPersons(personDeleted)
         })
-      // // axios
-      // // .delete(url)
-      // // .then(response => {
-      // //   setPersons(personDeleted)
-      // // })
     }
   }
   
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={successMessage} />
       <form>
         <div >
           filter shown with: 
@@ -122,3 +100,7 @@ const App = () => {
 }
 
 export default App
+
+
+/* tehtävä 2.18 tekemättä (ja maiden tiedot -tehtävistä 2.14)*/
+

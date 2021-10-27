@@ -1,5 +1,3 @@
-
-
 const CheckForName = (persons, newName) => {
   const length = persons.persons.length
   const name = newName.newName
