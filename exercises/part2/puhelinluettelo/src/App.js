@@ -4,6 +4,7 @@ import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import CheckForName from './components/CheckForName'
 import Notification from './components/Notification'
+import axios from 'axios'
 
 const App = () => {
   const [ persons, setPersons] = useState([])
@@ -53,10 +54,11 @@ const App = () => {
     console.log('name', name)
     console.log('number', number)
     console.log('id', id)
-    // const url = `http://localhost:3001/persons/${id}`
-    // const person = persons.find(n => n.id === id)
-    // console.log('person', person)
-    // const changedNote = { ...person, number: number }
+    const url = `http://localhost:3001/persons/${id}`
+    const person = persons.find(n => n.id === id)
+    console.log('person', person)
+    const changedPerson = { ...person, number: number }
+    console.log('changedPerson', changedPerson)
     // setNewName('')
     // setNewNumber('')
   }
