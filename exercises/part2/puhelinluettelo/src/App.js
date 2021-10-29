@@ -54,7 +54,10 @@ const App = () => {
       setPersons(persons.map(person => person.id !== id ? person : response.data))
     })
     .catch(error => {
-      console.log('fail')
+      setErrorMessage(`Information of ${person.name} has already been removed from server`)
+      setTimeout(() => {
+        setSuccessMessage(null)
+      }, 5000)
     })  
     setNewName('')
     setNewNumber('')
