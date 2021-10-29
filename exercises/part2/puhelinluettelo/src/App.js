@@ -5,7 +5,6 @@ import PersonForm from './components/PersonForm'
 import CheckForName from './components/CheckForName'
 import SuccessNotification from './components/SuccessNotification'
 import ErrorNotification from './components/ErrorNotification'
-import axios from 'axios'
 
 const App = () => {
   const [ persons, setPersons] = useState([])
@@ -28,7 +27,6 @@ const App = () => {
       name: newName,
       number: newNumber,
     }
-
     personService
       .create(nameObject)
       .then(response => {
@@ -41,28 +39,6 @@ const App = () => {
         }, 5000)
       })
   }
-
-  const replaceNumber = namenumberandid => {
-    const number = namenumberandid[1]
-    const id = namenumberandid[2]
-    const url = `http://localhost:3001/persons/${id}`
-    const person = persons.find(n => n.id === id)
-    const changedPerson = { ...person, number: number }
-    axios
-      .put(url, changedPerson)
-      .then(response => {
-      setPersons(persons.map(person => person.id !== id ? person : response.data))
-    })
-    .catch(error => {
-      setErrorMessage(`Information of ${person.name} has already been removed from server`)
-      setTimeout(() => {
-        setSuccessMessage(null)
-      }, 5000)
-    })  
-    setNewName('')
-    setNewNumber('')
-  }
-
 
   const dontAddNameAndNumber = () => {
     setNewName('')
@@ -81,18 +57,6 @@ const App = () => {
       replaceNumber([newName, newNumber, whatToDo])
     }
   }
-  
-  const handleNameChange = (event) => {
-    setNewName(event.target.value)
-  }
-
-  const handleNumberChange = (event) => {
-    setNewNumber(event.target.value)
-  }
-
-  const handleFilterChange = (event) => {
-    setNewFilter(event.target.value)
-  }
 
   const deletePerson = (id) => {
     const personToBeDeleted = persons.filter(person => person.id === id)
@@ -108,6 +72,38 @@ const App = () => {
           }, 5000)
         })
     }
+  }
+
+  const replaceNumber = namenumberandid => {
+    const number = namenumberandid[1]
+    const id = namenumberandid[2]
+    const person = persons.find(n => n.id === id)
+    const changedPerson = { ...person, number: number }
+    personService
+      .replaceNumber(id, changedPerson)
+      .then(response => {
+        setPersons(persons.map(person => person.id !== id ? person : response.data))
+      })
+    .catch(error => {
+      setErrorMessage(`Information of ${person.name} has already been removed from server`)
+      setTimeout(() => {
+        setSuccessMessage(null)
+      }, 5000)
+    })  
+    setNewName('')
+    setNewNumber('')
+  }
+  
+  const handleNameChange = (event) => {
+    setNewName(event.target.value)
+  }
+
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
+  }
+
+  const handleFilterChange = (event) => {
+    setNewFilter(event.target.value)
   }
   
   return (
@@ -141,6 +137,5 @@ const App = () => {
 export default App
 
 
-/* tehtävä 2.20 tekemättä (ja maiden tiedot -tehtävistä 2.14)
-ja lisäksi pitäisi muttaa kaikki axiosit tulemaan persons service kautta*/
+// maiden tiedot 2.14 tekemättä
 
