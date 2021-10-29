@@ -22,13 +22,6 @@ const App = () => {
   }, [])
   
   const addNameAndNumber = ( {newName, newNumber }) => {
-    // const length = persons.length
-    // for (let i =0; i < length; i++) {
-    //   if (newName === persons[i].name) {
-    //     console.log('löytyy jo')
-    //   }
-    // }
-
     const nameObject = {
       name: newName,
       number: newNumber,
@@ -48,17 +41,11 @@ const App = () => {
   }
 
   const replaceNumber = namenumberandid => {
-    const name = namenumberandid[0]
     const number = namenumberandid[1]
     const id = namenumberandid[2]
-    console.log('name', name)
-    console.log('number', number)
-    console.log('id', id)
     const url = `http://localhost:3001/persons/${id}`
     const person = persons.find(n => n.id === id)
-    console.log('person', person)
     const changedPerson = { ...person, number: number }
-    console.log('changedPerson', changedPerson)
     axios.put(url, changedPerson).then(response => {
       setPersons(persons.map(person => person.id !== id ? person : response.data))
     })
@@ -77,13 +64,10 @@ const App = () => {
     event.preventDefault()
     const whatToDo = CheckForName({persons}, {newName})
     if (whatToDo === "add name and number") {
-      console.log("add name and number")
       addNameAndNumber({ newName, newNumber })
     } else if (whatToDo === "dont add anything"){
-      console.log("dont add anything")
       dontAddNameAndNumber()
     } else {
-      console.log('whatToDo', whatToDo)
       replaceNumber([newName, newNumber, whatToDo])
     }
   }
@@ -103,7 +87,6 @@ const App = () => {
   const deletePerson = (id) => {
     const personToBeDeleted = persons.filter(person => person.id === id)
     const personDeleted = persons.filter(person => person.id !== id)
-    console.log('personToBeDeleted', personToBeDeleted)
     if (window.confirm(`Delete ${personToBeDeleted[0].name}?`)) {
       personService
         .deletePerson(id)
@@ -147,5 +130,6 @@ const App = () => {
 export default App
 
 
-/* tehtävä 2.18 tekemättä (ja maiden tiedot -tehtävistä 2.14)*/
+/* tehtävä 2.20 tekemättä (ja maiden tiedot -tehtävistä 2.14)
+ja lisäksi pitäisi muttaa kaikki axiosit tulemaan persons service kautta*/
 

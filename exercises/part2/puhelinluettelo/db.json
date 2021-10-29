@@ -12,8 +12,13 @@
     },
     {
       "name": "Kiira Korpi",
-      "number": "2345",
+      "number": "123",
       "id": 3
+    },
+    {
+      "name": "Laura Lepistö",
+      "number": "234",
+      "id": 4
     }
   ]
 }
