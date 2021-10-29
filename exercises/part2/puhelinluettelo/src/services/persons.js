@@ -7,7 +7,10 @@ const getAll = () => {
   }
 
 const create = newObject => {
-    return axios.post(baseUrl, newObject)
+  console.log('tulee tänne')
+    const request = axios.post(baseUrl, newObject)
+    return request.then(response => response.data)
+    // return axios.post(baseUrl, newObject)
 }
 
 const deletePerson = id => {

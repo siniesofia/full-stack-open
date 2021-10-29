@@ -29,8 +29,8 @@ const App = () => {
     }
     personService
       .create(nameObject)
-      .then(response => {
-        setPersons(persons.concat(response.data))
+      .then(returnedPerson => {
+        setPersons(persons.concat(returnedPerson))
         setNewName('')
         setNewNumber('')
         setSuccessMessage(`Added ${nameObject.name}`)
