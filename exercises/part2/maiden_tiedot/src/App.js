@@ -82,7 +82,7 @@ const App = () => {
         <div>population {country.population}</div>
         <h2>languages</h2>
         {languages.map(language => <Languages key={country.name} language={language}></Languages>)}
-        <Flag flag={country.flag}></Flag>
+        <Flag key={country.name} flag={country.flag}></Flag>
       </div>
     )
   }
@@ -109,3 +109,7 @@ const App = () => {
 }
 
 export default App
+
+// tehtävä 2.14 puuttuu
+
+
