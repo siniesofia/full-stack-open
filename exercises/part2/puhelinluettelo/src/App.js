@@ -3,7 +3,8 @@ import personService from './services/persons'
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import CheckForName from './components/CheckForName'
-import Notification from './components/Notification'
+import SuccessNotification from './components/SuccessNotification'
+import ErrorNotification from './components/ErrorNotification'
 import axios from 'axios'
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
   const [successMessage, setSuccessMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -46,9 +48,14 @@ const App = () => {
     const url = `http://localhost:3001/persons/${id}`
     const person = persons.find(n => n.id === id)
     const changedPerson = { ...person, number: number }
-    axios.put(url, changedPerson).then(response => {
+    axios
+      .put(url, changedPerson)
+      .then(response => {
       setPersons(persons.map(person => person.id !== id ? person : response.data))
     })
+    .catch(error => {
+      console.log('fail')
+    })  
     setNewName('')
     setNewNumber('')
   }
@@ -103,7 +110,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={successMessage} />
+      <SuccessNotification message={successMessage} />
+      <ErrorNotification message={errorMessage} />
       <form>
         <div >
           filter shown with: 
