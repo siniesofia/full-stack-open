@@ -81,8 +81,8 @@ const App = () => {
     const changedPerson = { ...person, number: number }
     personService
       .replaceNumber(id, changedPerson)
-      .then(response => {
-        setPersons(persons.map(person => person.id !== id ? person : response.data))
+      .then(returnedPerson => {
+        setPersons(persons.map(person => person.id !== id ? person : returnedPerson))
       })
     .catch(error => {
       setErrorMessage(`Information of ${person.name} has already been removed from server`)

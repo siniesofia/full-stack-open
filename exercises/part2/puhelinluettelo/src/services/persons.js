@@ -18,7 +18,9 @@ const deletePerson = id => {
 }
 
 const replaceNumber = (id, changedPerson) => {
-  return axios.put(`${baseUrl}/${id}`, changedPerson)
+  const request = axios.put(`${baseUrl}/${id}`, changedPerson)
+  return request.then(response => response.data)
+  // return axios.put(`${baseUrl}/${id}`, changedPerson)
 }
 
 export default { getAll, create, deletePerson, replaceNumber
