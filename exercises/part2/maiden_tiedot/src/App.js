@@ -23,6 +23,8 @@ const App = () => {
     setFilter(event.target.value)
   }
 
+  console.log('allCountries', allCountries[0])
+
   const Countries = ({ countries, filter }) => {
     const matches = countries.filter(country => country.name.common.toLowerCase().includes(filter.toLowerCase())).length
     if (matches > 10) {
@@ -60,19 +62,27 @@ const App = () => {
       </div>
     )
   }
+
+  const Flag = ({ flag }) => {
+    const footerStyle = {
+      fontSize: 200
+    }
+    return (
+      <div style={footerStyle}>{flag}</div>
+    )
+  }
   
   const CountryInformation = ({ country }) => {
     const code = country.altSpellings[0]
     const languages = Object.values(country.languages)
-    const osoite = 'https://www.countryflags.io/' + code + '/flat/64.png'
     return (
       <div>
         <h1>{country.name.common}</h1>
         <div>capital {country.capital}</div>
         <div>population {country.population}</div>
         <h2>languages</h2>
-        {languages.map(language => <Languages language={language}></Languages>)}
-        <img src={osoite} width="200px" height="200px" alt="lipun kuva"></img>
+        {languages.map(language => <Languages key={country.name} language={language}></Languages>)}
+        <Flag key={country.name} flag={country.flag}></Flag>
       </div>
     )
   }
@@ -99,3 +109,7 @@ const App = () => {
 }
 
 export default App
+
+// tehtävä 2.14 puuttuu
+
+
