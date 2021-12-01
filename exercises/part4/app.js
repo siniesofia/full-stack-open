@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 
+
 const blogsRouter = require('./controllers/blogs')
 
 const logger = require('./utils/logger')
@@ -26,3 +27,13 @@ app.use(express.json())
 app.use('/api/blogs', blogsRouter)
 
 module.exports = app
+
+
+
+// tehty:
+
+// 4.8, 4.9, 4.10, 4.11, 4.13
+
+// ei tehty: 
+
+// 4.12, 4.14
