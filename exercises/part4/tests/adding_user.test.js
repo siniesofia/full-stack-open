@@ -13,7 +13,6 @@ beforeEach(async () => {
 //   await blogObject.save()
 })
 
-
 test('a valid user can be added ', async () => {
   const newUser = {
     username: 'elli',
