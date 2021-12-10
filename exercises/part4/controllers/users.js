@@ -34,10 +34,10 @@ usersRouter.get('/', async (request, response) => {
   response.json(users.map(u => u.toJSON()))
 })
 
-// usersRouter.delete('/:id', async (request, response) => {
-//   await User.findByIdAndRemove(request.params.id)
-//   response.status(204).end()
+usersRouter.delete('/:id', async (request, response) => {
+  await User.findByIdAndRemove(request.params.id)
+  response.status(204).end()
 
-// })
+})
 
 module.exports = usersRouter

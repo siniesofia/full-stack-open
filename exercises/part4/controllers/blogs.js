@@ -50,10 +50,15 @@ blogsRouter.post('/', async (request, response) => {
     if (error.name === 'JsonWebTokenError') {
       return response.status(401).send({ error: 'invalid token' })
     }
-
   }
+})
+
+blogsRouter.delete('/:id', async (request, response) => {
+  await Blog.findByIdAndRemove(request.params.id)
+  response.status(204).end()
 
 })
+
 
 
 
