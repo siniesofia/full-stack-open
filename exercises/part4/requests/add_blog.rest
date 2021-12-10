@@ -1,9 +1,9 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpaXJhIiwiaWQiOiI2MWIzNTBmMDAzMjVkM2E1ZDdiODBlZDQiLCJpYXQiOjE2MzkxNDE3MTR9.wTLm4A8Djf5mYI_xDVNOC1a1C3UYBD86dVpkQyoBjQ8
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpaXJhIiwiaWQiOiI2MWIzNTBmMDAzMjVkM2E1ZDdiODBlZDQiLCJpYXQiOjE2MzkxNDM0MDZ9.A8b6PHTejOcWfPn88Ld3qjOhf3-Z-QP_ZS6auaYfVkU
 
 {
-    "title": "reactin perusteet",
+    "title": "Kiiran blogi",
     "author": "HY",
     "url": "urli"
 }
