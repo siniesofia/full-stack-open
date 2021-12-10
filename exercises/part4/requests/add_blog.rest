@@ -2,7 +2,7 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Full-stack -ohjelmoinnin perusteet",
+    "title": "ohjelmoinnin perusteet",
     "author": "HY",
     "url": "urli",
     "userId": "61b33db2caa26e14e00a3dc1"
