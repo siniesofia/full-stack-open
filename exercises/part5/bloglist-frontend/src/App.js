@@ -50,6 +50,7 @@ const App = () => {
   const handleLogout = async (event) => {
     event.preventDefault()
     console.log('logging out')
+    window.localStorage.removeItem('loggedBlogappUser')
   }
   
   if (user === null) {
@@ -57,9 +58,6 @@ const App = () => {
       <div>
         <h2>Log in to application</h2>
         <form onSubmit={handleLogin}>
-        <div>
-          <p>login</p>
-        </div>
         <div>
           username
             <input
