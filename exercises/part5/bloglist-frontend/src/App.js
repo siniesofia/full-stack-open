@@ -3,6 +3,9 @@ import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login' 
 import SuccessNotification from './components/SuccessNotification'
+import ErrorNotification from './components/ErrorNotification'
+
+
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -13,6 +16,7 @@ const App = () => {
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
   const [successMessage, setSuccessMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -49,6 +53,10 @@ const App = () => {
       console.log('event', event)
     } catch {
       console.log('wrong username or password')
+      setErrorMessage(`wrong username or password`)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
     }
   }
 
@@ -71,11 +79,6 @@ const App = () => {
       setTimeout(() => {
         setSuccessMessage(null)
       }, 5000)
-      if (addedBlog!== null) {
-        console.log('onnistui!')
-      } else {
-        console.log('jokin meni vikaan')
-      }
     } catch {
       console.log('something went wrong')
     }
@@ -92,6 +95,7 @@ const App = () => {
     return (
       <div>
         <h2>Log in to application</h2>
+        <ErrorNotification message={errorMessage} />
         <form onSubmit={handleLogin}>
         <div>
           username
