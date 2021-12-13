@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login' 
+import SuccessNotification from './components/SuccessNotification'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -11,6 +12,7 @@ const App = () => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
+  const [successMessage, setSuccessMessage] = useState(null)
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -44,6 +46,7 @@ const App = () => {
       setUser(user)
       setUsername('')
       setPassword('')
+      console.log('event', event)
     } catch {
       console.log('wrong username or password')
     }
@@ -57,11 +60,22 @@ const App = () => {
       "author": author,
       "url": url
     }
+
     try {
-      blogService.create(newBlog)
+      const addedBlog = await blogService.create(newBlog)
+      console.log('tulostuuko', addedBlog)
       setTitle('')
       setAuthor('')
       setUrl('')
+      setSuccessMessage(`Added a new blog`)
+      setTimeout(() => {
+        setSuccessMessage(null)
+      }, 5000)
+      if (addedBlog!== null) {
+        console.log('onnistui!')
+      } else {
+        console.log('jokin meni vikaan')
+      }
     } catch {
       console.log('something went wrong')
     }
@@ -105,6 +119,7 @@ const App = () => {
 
   return (
     <div>
+      <SuccessNotification message={successMessage} />
       <p>{user.name} logged in</p>
       <form onClick={handleLogout}>
         <button>logout</button>
