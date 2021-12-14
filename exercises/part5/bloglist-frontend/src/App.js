@@ -4,6 +4,8 @@ import blogService from './services/blogs'
 import loginService from './services/login' 
 import SuccessNotification from './components/SuccessNotification'
 import ErrorNotification from './components/ErrorNotification'
+import NewBlogForm from './components/CreateNewBlog'
+import Togglable from './components/Togglable'
 
 
 
@@ -128,37 +130,17 @@ const App = () => {
       <form onClick={handleLogout}>
         <button>logout</button>
       </form>  
-      <h2>create new</h2>
-      <form onSubmit={handleAddNew}>
-        <div>
-          title
-            <input
-            type="title"
-            value={title}
-            name="Title"
-            onChange={({ target }) => setTitle(target.value)}
-          />
-        </div>
-        <div>
-          author
-            <input
-            type="author"
-            value={author}
-            name="Author"
-            onChange={({ target }) => setAuthor(target.value)}
-          />
-        </div>
-        <div>
-          url
-            <input
-            type="url"
-            value={url}
-            name="Url"
-            onChange={({ target }) => setUrl(target.value)}
-          />
-        </div>
-        <button type="create">create</button>
-      </form>   
+      <Togglable buttonLabel='create new'>
+        <NewBlogForm
+          title={title}
+          author={author}
+          url={url}
+          handleTitleChange={({ target }) => setTitle(target.value)}
+          handleAuthorChange={({ target }) => setAuthor(target.value)}
+          handleUrlChange={({ target }) => setUrl(target.value)}
+          handleSubmit={handleAddNew}
+        />
+      </Togglable>
       <h2>blogs</h2>
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
