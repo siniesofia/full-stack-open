@@ -3,8 +3,14 @@ const Blog = require('../models/blog')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 
+const tokenMiddleware = (request, response, next) => {
+
+}
+
 const getTokenFrom = request => {
+  console.log('request on', request)
   const authorization = request.get('authorization')
+  console.log('authorisation on', authorization)
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
     return authorization.substring(7)
   }
@@ -38,7 +44,8 @@ blogsRouter.post('/', async (request, response) => {
       // important: body.important === undefined ? false : body.important,
       author: body.author,
       url: body.url,
-      user: user._id
+      user: user._id,
+      likes: body.likes === undefined ? 0 : body.likes
     })
   
     const savedBlog = await blog.save()

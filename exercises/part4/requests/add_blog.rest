@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpaXJhIiwiaWQiOiI2MWIzNTBmMDAzMjVkM2E1ZDdiODBlZDQiLCJpYXQiOjE2MzkxNDM0MDZ9.A8b6PHTejOcWfPn88Ld3qjOhf3-Z-QP_ZS6auaYfVkU
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pcmthIiwiaWQiOiI2MWIzNWI0NWVjNjQyZGNkNWQ1Yzk0MGIiLCJpYXQiOjE2MzkxNDQzNTl9.IOo3AX-wsTweCG_xK91jbdLjQcV1bgNqb5HIwqIpSjg
 
 {
-    "title": "Kiiran blogi",
-    "author": "HY",
-    "url": "urli"
+    "title": "Keskimäärin likejä",
+    "author": "waaa",
+    "url": "urli",
+    "likes": 5
 }
