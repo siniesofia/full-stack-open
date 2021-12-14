@@ -1,5 +1,4 @@
 import ToggleBlogs from './ToggleBlogs'
-import ToggleDeleteButton from './ToggleDeleteButton'
 import blogService from '/Users/mac/full-stack-open/exercises/part5/bloglist-frontend/src/services/blogs'
 
 const Blog = ({ blog, user }) => {
