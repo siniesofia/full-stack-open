@@ -130,6 +130,7 @@ const App = () => {
       <form onClick={handleLogout}>
         <button>logout</button>
       </form>  
+      <br></br>
       <Togglable buttonLabel='create new'>
         <NewBlogForm
           title={title}
@@ -138,7 +139,7 @@ const App = () => {
           handleTitleChange={({ target }) => setTitle(target.value)}
           handleAuthorChange={({ target }) => setAuthor(target.value)}
           handleUrlChange={({ target }) => setUrl(target.value)}
-          handleSubmit={handleAddNew}
+          handleAddNew={handleAddNew}
         />
       </Togglable>
       <h2>blogs</h2>
