@@ -2,6 +2,8 @@ import ToggleBlogs from './ToggleBlogs'
 import blogService from '/Users/mac/full-stack-open/exercises/part5/bloglist-frontend/src/services/blogs'
 import React from 'react'
 
+
+
 const Blog = ({ blog, user }) => {
 
   const handleRemoval = async (event) => {
@@ -16,24 +18,23 @@ const Blog = ({ blog, user }) => {
     }
   }
 
-  const handleLike = async (event) => {
-    console.log(event.target.value)
-    console.log('blog.id', blog.id)
-    const updatedBlog = {
-      'title': blog.title,
-      'author': blog.author,
-      'url': blog.url,
-      'likes': blog.likes +1,
-      'user': blog.user.id,
-      'blogid': blog.id
-    }
-    console.log('updatetaan...')
-    blogService.update(updatedBlog)
-      .then(response => {
-        console.log('response', response)
-      })
-
-  }
+  // const handleLike = async (event) => {
+  //   console.log(event.target.value)
+  //   console.log('blog.id', blog.id)
+  //   const updatedBlog = {
+  //     'title': blog.title,
+  //     'author': blog.author,
+  //     'url': blog.url,
+  //     'likes': blog.likes +1,
+  //     'user': blog.user.id,
+  //     'blogid': blog.id
+  //   }
+  //   console.log('updatetaan...')
+  //   blogService.update(updatedBlog)
+  //     .then(response => {
+  //       console.log('response', response)
+  //     })
+  // }
 
   const blogStyle = {
     paddingTop: 10,
@@ -42,6 +43,9 @@ const Blog = ({ blog, user }) => {
     borderWidth: 1,
     marginBottom: 5
   }
+
+
+
 
   if (blog.user.username === user.username) {
     return (
@@ -65,7 +69,7 @@ const Blog = ({ blog, user }) => {
         {<ToggleBlogs buttonLabel='view'>
           {blog.url}
           <br></br>
-          likes {blog.likes} <button onClick={handleLike}>like</button>
+          likes {blog.likes} <button>like</button>
           <br></br>
           {blog.author}
         </ToggleBlogs>}
