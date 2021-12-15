@@ -1,17 +1,18 @@
 import ToggleBlogs from './ToggleBlogs'
 import blogService from '/Users/mac/full-stack-open/exercises/part5/bloglist-frontend/src/services/blogs'
+import React from 'react'
 
 const Blog = ({ blog, user }) => {
 
   const handleRemoval = async (event) => {
-    if (window.confirm("Remove blog?")) {
+    if (window.confirm('Remove blog?')) {
       console.log(event.target.value)
       const id = blog.id
       console.log('poistetaan...')
       blogService.deleteblog(id)
-      .then(response => {
-        console.log('response', response)
-      })
+        .then(response => {
+          console.log('response', response)
+        })
     }
   }
 
@@ -19,18 +20,18 @@ const Blog = ({ blog, user }) => {
     console.log(event.target.value)
     console.log('blog.id', blog.id)
     const updatedBlog = {
-      "title": blog.title,
-      "author": blog.author,
-      "url": blog.url,
-      "likes": blog.likes +1,
-      "user": blog.user.id,
-      "blogid": blog.id
+      'title': blog.title,
+      'author': blog.author,
+      'url': blog.url,
+      'likes': blog.likes +1,
+      'user': blog.user.id,
+      'blogid': blog.id
     }
     console.log('updatetaan...')
     blogService.update(updatedBlog)
-    .then(response => {
-      console.log('response', response)
-    })
+      .then(response => {
+        console.log('response', response)
+      })
 
   }
 
@@ -51,11 +52,11 @@ const Blog = ({ blog, user }) => {
           <br></br>
           likes {blog.likes} <button>like</button>
           <br></br>
-          {blog.author} 
+          {blog.author}
           <br></br>
           <button onClick={handleRemoval}>remove</button>
-          </ToggleBlogs>}
-      </div>  
+        </ToggleBlogs>}
+      </div>
     )
   } else {
     return (
@@ -66,9 +67,9 @@ const Blog = ({ blog, user }) => {
           <br></br>
           likes {blog.likes} <button onClick={handleLike}>like</button>
           <br></br>
-          {blog.author} 
-          </ToggleBlogs>}
-      </div>  
+          {blog.author}
+        </ToggleBlogs>}
+      </div>
     )
   }
 

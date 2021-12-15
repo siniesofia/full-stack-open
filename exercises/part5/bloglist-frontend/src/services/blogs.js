@@ -26,11 +26,11 @@ const update = async newObject => {
   const blogId = newObject.blogid
   console.log('blogId', blogId)
   const updatedBlog = {
-    "title": newObject.title,
-    "author": newObject.author,
-    "url": newObject.url,
-    "likes": newObject.likes,
-    "user": newObject.user,
+    'title': newObject.title,
+    'author': newObject.author,
+    'url': newObject.url,
+    'likes': newObject.likes,
+    'user': newObject.user,
   }
   console.log('blogId', blogId)
 

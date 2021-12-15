@@ -15,7 +15,7 @@ const Togglable = (props) => {
   Togglable.propTypes = {
     buttonLabel: PropTypes.string.isRequired
   }
-  
+
   return (
     <div>
       <div style={hideWhenVisible}>
