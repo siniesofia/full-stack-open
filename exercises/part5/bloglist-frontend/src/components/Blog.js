@@ -13,8 +13,25 @@ const Blog = ({ blog, user }) => {
         console.log('response', response)
       })
     }
+  }
 
-  
+  const handleLike = async (event) => {
+    console.log(event.target.value)
+    console.log('blog.id', blog.id)
+    const updatedBlog = {
+      "title": blog.title,
+      "author": blog.author,
+      "url": blog.url,
+      "likes": blog.likes +1,
+      "user": blog.user.id,
+      "blogid": blog.id
+    }
+    console.log('updatetaan...')
+    blogService.update(updatedBlog)
+    .then(response => {
+      console.log('response', response)
+    })
+
   }
 
   const blogStyle = {
@@ -25,8 +42,6 @@ const Blog = ({ blog, user }) => {
     marginBottom: 5
   }
 
-  console.log('blog.author', blog.user.username)
-  console.log('username', user.username)
   if (blog.user.username === user.username) {
     return (
       <div style={blogStyle}>
@@ -49,7 +64,7 @@ const Blog = ({ blog, user }) => {
         {<ToggleBlogs buttonLabel='view'>
           {blog.url}
           <br></br>
-          likes {blog.likes} <button>like</button>
+          likes {blog.likes} <button onClick={handleLike}>like</button>
           <br></br>
           {blog.author} 
           </ToggleBlogs>}
