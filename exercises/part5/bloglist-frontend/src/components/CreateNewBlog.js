@@ -1,14 +1,14 @@
 import React from 'react'
 
 const NewBlogForm = ({
-   handleAddNew,
-   handleTitleChange,
-   handleAuthorChange,
-   handleUrlChange,
-   title,
-   author,
-   url
-  }) => {
+  handleAddNew,
+  handleTitleChange,
+  handleAuthorChange,
+  handleUrlChange,
+  title,
+  author,
+  url
+}) => {
   return (
     <div>
       <h2>add new</h2>
@@ -27,15 +27,15 @@ const NewBlogForm = ({
             value={author}
             onChange={handleAuthorChange}
           />
-      </div>
-      <div>
+        </div>
+        <div>
           url
           <input
             type="url"
             value={url}
             onChange={handleUrlChange}
           />
-      </div>
+        </div>
         <button type="submit">add</button>
       </form>
     </div>

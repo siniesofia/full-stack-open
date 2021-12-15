@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
-import loginService from './services/login' 
+import loginService from './services/login'
 import SuccessNotification from './components/SuccessNotification'
 import ErrorNotification from './components/ErrorNotification'
 import NewBlogForm from './components/CreateNewBlog'
@@ -11,7 +11,7 @@ import Togglable from './components/Togglable'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('') 
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [title, setTitle] = useState('')
@@ -23,7 +23,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const App = () => {
 
       window.localStorage.setItem(
         'loggedBlogappUser', JSON.stringify(user)
-      ) 
+      )
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
@@ -55,7 +55,7 @@ const App = () => {
       console.log('event', event)
     } catch {
       console.log('wrong username or password')
-      setErrorMessage(`wrong username or password`)
+      setErrorMessage('wrong username or password')
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
@@ -66,9 +66,9 @@ const App = () => {
     event.preventDefault()
     console.log('adding new with', title, author, url)
     const newBlog = {
-      "title": title,
-      "author": author,
-      "url": url
+      'title': title,
+      'author': author,
+      'url': url
     }
 
     try {
@@ -77,7 +77,7 @@ const App = () => {
       setTitle('')
       setAuthor('')
       setUrl('')
-      setSuccessMessage(`Added a new blog`)
+      setSuccessMessage('Added a new blog')
       setTimeout(() => {
         setSuccessMessage(null)
       }, 5000)
@@ -92,33 +92,33 @@ const App = () => {
     console.log('logging out')
     window.localStorage.removeItem('loggedBlogappUser')
   }
-  
+
   if (user === null) {
     return (
       <div>
         <h2>Log in to application</h2>
         <ErrorNotification message={errorMessage} />
         <form onSubmit={handleLogin}>
-        <div>
+          <div>
           username
             <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          password
+              type='text'
+              value={username}
+              name='Username'
+              onChange={({ target }) => setUsername(target.value)}
+            />
+          </div>
+          <div>
+            password
             <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit">login</button>
-      </form>      
+              type='password'
+              value={password}
+              name='Password'
+              onChange={({ target }) => setPassword(target.value)}
+            />
+          </div>
+          <button type='submit'>login</button>
+        </form>
       </div>
     )
   }
@@ -129,7 +129,7 @@ const App = () => {
       <p>{user.name} logged in</p>
       <form onClick={handleLogout}>
         <button>logout</button>
-      </form>  
+      </form>
       <br></br>
       <Togglable buttonLabel='create new'>
         <NewBlogForm

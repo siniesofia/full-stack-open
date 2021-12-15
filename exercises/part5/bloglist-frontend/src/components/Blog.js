@@ -46,7 +46,7 @@ const Blog = ({ blog, user }) => {
   if (blog.user.username === user.username) {
     return (
       <div style={blogStyle}>
-        {blog.title}
+        {blog.title + ' ' + blog.author + ' ' + blog.likes}
         {<ToggleBlogs buttonLabel='view'>
           {blog.url}
           <br></br>
@@ -61,7 +61,7 @@ const Blog = ({ blog, user }) => {
   } else {
     return (
       <div style={blogStyle}>
-        {blog.title}
+        {blog.title + ' ' + blog.author + ' ' + blog.likes}
         {<ToggleBlogs buttonLabel='view'>
           {blog.url}
           <br></br>
