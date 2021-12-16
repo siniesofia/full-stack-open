@@ -51,7 +51,7 @@ const Blog = ({ blog, user }) => {
     return (
       <div style={blogStyle}>
         {blog.title + ' ' + blog.author}
-        {<ToggleBlogs buttonLabel='view'>
+        {<ToggleBlogs id='view-button' buttonLabel='view'>
           {blog.url}
           <br></br>
           likes {blog.likes} <button>like</button>
@@ -66,7 +66,7 @@ const Blog = ({ blog, user }) => {
     return (
       <div style={blogStyle}>
         {blog.title + ' ' + blog.author}
-        {<ToggleBlogs buttonLabel='view'>
+        {<ToggleBlogs id='view-button' buttonLabel='view'>
           {blog.url}
           <br></br>
           likes {blog.likes} <button>like</button>
